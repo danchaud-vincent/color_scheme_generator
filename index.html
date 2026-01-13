@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- VIEWPORT -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- FONTAWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- STYLESHEET-->
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>COLOR SCHEME GENERATOR</h1>
+
+        <form id="color-form">
+          <input type="color" name="color" id="color" class="flex-item" />
+          <select name="scheme" id="scheme-select" class="flex-item">
+            <option value="monochrome">Monochrome</option>
+            <option value="monochrome-dark">Monochrome-dark</option>
+            <option value="monochrome-light">Monochrome-light</option>
+            <option value="analogic">Analogic</option>
+            <option value="complement">Complement</option>
+            <option value="analogic-complement">Analogic-complement</option>
+            <option value="triad">Triad</option>
+            <option value="quad">Quad</option>
+          </select>
+          <button type="submit" id="submit-btn" class="flex-item">Get color scheme</button>
+        </form>
+        <div class="custom-darkmode">
+          <label for="toggle-darkmode"></label>
+          <input id="toggle-darkmode" type="checkbox" name="toggle-darkmode" />
+        </div>
+      </header>
+
+      <main>
+        <div id="colors" class="colors-wrapper"></div>
+      </main>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
