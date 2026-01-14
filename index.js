@@ -1,4 +1,6 @@
 const form = document.getElementById('color-form');
+const inputColor = document.getElementById('input-color');
+const selectScheme = document.getElementById('select-scheme');
 const darkmodeValue = document.getElementById('darkmode').checked;
 
 initHTML();
@@ -7,31 +9,73 @@ initHTML();
 document.getElementById('submit-btn').addEventListener('click', (e) => {
   e.preventDefault();
 
+  // get the data from the form
   const formData = new FormData(form);
-  console.log(formData.get('color'));
-  console.log(formData.get('scheme'));
-  console.log(formData.get('color').indexOf('m'));
   const colorHex = formData.get('color').indexOf('#') != -1 ? formData.get('color').slice(1) : formData.get('color');
   const schemeMode = formData.get('scheme');
-  getColor(colorHex);
-  getColorScheme(colorHex, schemeMode);
+
+  // save to localStorage
+  saveToLocalstorage(colorHex, schemeMode);
+
+  // get the colors from the api and render
+  getColorScheme(colorHex, schemeMode).then((colorsArray) => renderColors(colorsArray));
 });
 
 document.getElementById('darkmode').addEventListener('click', () => {
-  if (document.getElementById('darkmode').checked) {
+  setDarkmode();
+});
+
+function setDarkmode() {
+  const darkmodeStatus = document.getElementById('darkmode').checked;
+
+  if (darkmodeStatus) {
     document.body.classList.add('darkmode');
   } else {
     document.body.classList.remove('darkmode');
   }
-});
+}
 
 // ------ FUNCTIONS -------
 function initHTML() {
-  const formData = new FormData(form);
-  const colorHex = formData.get('color').indexOf('#') != -1 ? formData.get('color').slice(1) : formData.get('color');
-  const schemeMode = formData.get('scheme');
+  let hex = getColorLocalStorage();
+  let scheme = getSchemeLocalStorage();
 
-  getColorScheme(colorHex, schemeMode);
+  if (hex && scheme) {
+    inputColor.value = '#' + hex;
+    selectScheme.value = scheme;
+  } else {
+    const formData = new FormData(form);
+    hex = formData.get('color').indexOf('#') != -1 ? formData.get('color').slice(1) : formData.get('color');
+    scheme = formData.get('scheme');
+  }
+
+  getColorScheme(hex, scheme).then((colorsArray) => renderColors(colorsArray));
+}
+
+function saveToLocalstorage(hex, scheme) {
+  localStorage.setItem('hex', hex);
+  localStorage.setItem('scheme', scheme);
+}
+
+function getColorLocalStorage() {
+  return localStorage.getItem('hex');
+}
+
+function getSchemeLocalStorage() {
+  return localStorage.getItem('scheme');
+}
+
+async function getColor(colorHex) {
+  const response = await fetch(`https://www.thecolorapi.com/id?format=json&hex=${colorHex}`);
+  const data = await response.json();
+}
+
+async function getColorScheme(colorHex, schemeMode) {
+  const response = await fetch(`https://www.thecolorapi.com/scheme?hex=${colorHex}&mode=${schemeMode}&format=json`);
+  const data = await response.json();
+  const colorsArray = data.colors;
+
+  return colorsArray;
 }
 
 function renderColors(colorsArr) {
@@ -62,17 +106,4 @@ function copyToClipboard(e) {
     const hexValue = e.target.dataset.hex;
     navigator.clipboard.writeText(hexValue);
   }
-}
-
-async function getColor(colorHex) {
-  const response = await fetch(`https://www.thecolorapi.com/id?format=json&hex=${colorHex}`);
-  const data = await response.json();
-}
-
-async function getColorScheme(colorHex, schemeMode) {
-  const response = await fetch(`https://www.thecolorapi.com/scheme?hex=${colorHex}&mode=${schemeMode}&format=json`);
-  const data = await response.json();
-  const colorsArray = data.colors;
-
-  renderColors(colorsArray);
 }
