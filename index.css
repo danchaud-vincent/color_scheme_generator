@@ -30,6 +30,9 @@ html {
   /* BORDER */
   --border-color: #1f2937;
   --border-rd: 5px;
+
+  /* ICON */
+  --icon: #1f2937;
 }
 
 .darkmode {
@@ -40,6 +43,9 @@ html {
   --bg-button: #3d4b60;
   --text-color: #ffffff;
   --border-color: #d1d5db;
+
+  /* ICON */
+  --icon: #ffffff;
 }
 
 /* ======= GLOBAL STYLING ======= */
@@ -220,22 +226,56 @@ header {
   gap: 5px;
 }
 
-.copy-btn {
-  border: none;
-  background: none;
-}
-
-.fa-copy {
-  cursor: pointer;
-}
-
 .color-name-text {
   padding: 0.4em 0;
   border: 2px solid var(--border-color);
   border-radius: 5px;
 }
 
-/* ----- MEDIA QUERIES ----- */
+/* --- BUTTON --- */
+.copy-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.icon {
+  font-size: 1.2rem;
+  color: var(--icon);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.icon-copy {
+  position: absolute;
+  transform: translate(-50%, -90%) scale(1);
+}
+
+.icon-check {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  transform: translate(-150%, -90%) scale(0.5);
+}
+
+.copy-btn.copied .icon-copy {
+  opacity: 0;
+  transform: translate(-50%, -90%) scale(0.5);
+}
+
+.copy-btn.copied .icon-check {
+  opacity: 1;
+  z-index: 1;
+  color: green;
+  transform: translate(-150%, -90%) scale(1);
+}
+
+.copy-text {
+  font-size: var(--fs-xs);
+  color: green;
+}
+
+/* ====== MEDIA QUERIES ====== */
 
 @media (min-width: 600px) {
   .form-color {
