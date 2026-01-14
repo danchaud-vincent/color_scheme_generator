@@ -17,11 +17,11 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>COLOR SCHEME GENERATOR</h1>
+        <h1 class="title">COLOR SCHEME GENERATOR</h1>
 
-        <form id="color-form">
-          <input type="color" name="color" id="color" class="flex-item" />
-          <select name="scheme" id="scheme-select" class="flex-item">
+        <form id="color-form" class="form-color">
+          <input type="color" name="color" id="color" class="input-color" />
+          <select name="scheme" class="select-scheme">
             <option value="monochrome">Monochrome</option>
             <option value="monochrome-dark">Monochrome-dark</option>
             <option value="monochrome-light">Monochrome-light</option>
@@ -31,12 +31,15 @@
             <option value="triad">Triad</option>
             <option value="quad">Quad</option>
           </select>
-          <button type="submit" id="submit-btn" class="flex-item">Get color scheme</button>
+          <button type="submit" id="submit-btn" class="submit-btn">Get color scheme</button>
+          <div class="toggle-container">
+            <input type="checkbox" id="darkmode" class="toggle-input" />
+            <label for="darkmode" class="toggle-btn">
+              <i class="fa-solid fa-sun"></i>
+              <i class="fa-solid fa-moon"></i>
+            </label>
+          </div>
         </form>
-        <div class="custom-darkmode">
-          <label for="toggle-darkmode"></label>
-          <input id="toggle-darkmode" type="checkbox" name="toggle-darkmode" />
-        </div>
       </header>
 
       <main>

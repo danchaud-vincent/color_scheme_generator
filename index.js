@@ -28,11 +28,12 @@ async function getColorScheme(colorHex, schemeMode) {
         <div class="color-container">
             <img src="${color.image.bare}" alt="${color.name.value}" class="color-img" />
             <div class="color-text-container">
-                <i class="fa-solid fa-copy"></i>
-                <p class="color-text">${color.hex.value}</p>
+                <div class="color-copy-container">
+                  <i class="fa-solid fa-copy"></i>
+                  <p class="color-text">${color.hex.value}</p>
+                </div>
+                <p class="color-name-text">${color.name.value}</p>
             </div>
-            
-            <p class="color-text">${color.name.value}</p>
         </div>
         
     `;

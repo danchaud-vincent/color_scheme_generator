@@ -35,21 +35,86 @@ p {
 }
 
 /* ----- HEADER CONTAINER STYLING ----- */
-
 header {
-  border: 2px solid red;
   text-align: center;
+  padding: 1em;
 }
 
-form {
+.title {
+  margin-bottom: 1rem;
+}
+
+.form-color {
   display: flex;
-  flex-grow: 1;
-  border: 2px solid red;
+  justify-content: space-between;
   flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.input-color {
+  width: 50px;
+  height: 40px;
+}
+
+.submit-btn {
+  height: 40px;
+}
+
+/* ----- TOGGLE BUTTON STYLING ----- */
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+}
+
+.toggle-input {
+  display: none;
+}
+
+.toggle-btn {
+  display: inline-block;
+  background-color: gray;
+  width: 60px;
+  height: 30px;
+  border-radius: 20px;
+  cursor: pointer;
+
+  position: relative;
+  transition: 0.2s;
+}
+
+.toggle-btn::before {
+  position: absolute;
+  content: '';
+  background-color: #fff;
+  width: 24px;
+  height: 24px;
+  border-radius: 20px;
+  margin: 3px;
+  transition: 0.2s;
+}
+
+.fa-sun {
+  position: absolute;
+  top: 6px;
+  right: 4px;
+}
+
+.fa-moon {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+}
+
+.toggle-input:checked + .toggle-btn {
+  background-color: #20096d;
+}
+
+.toggle-input:checked + .toggle-btn::before {
+  transform: translatex(-30px);
 }
 
 /* ----- COLORS CONTAINER STYLING ----- */
-
 .colors-wrapper {
   padding: 1em 0;
   display: flex;
@@ -61,11 +126,10 @@ form {
 
 .color-container {
   width: 90%;
+  height: 100%;
 
-  border: 2px solid red;
   display: flex;
   flex-direction: column;
-
   text-align: center;
 }
 
@@ -74,12 +138,18 @@ form {
 }
 
 .color-text-container {
+  height: 100px;
+
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  gap: 5px;
 }
-.color-text {
-  margin: 0.75em;
+
+.color-name-text {
+  padding: 0.4em 0;
+  border: 2px solid orange;
+  border-radius: 5px;
 }
 
 /* ----- MEDIA QUERIES ----- */
@@ -87,5 +157,42 @@ form {
 @media (min-width: 728px) {
   .wrapper {
     height: 600px;
+    width: 60%;
+  }
+
+  main {
+    height: 100%;
+  }
+
+  .colors-wrapper {
+    height: 100%;
+    flex-direction: row;
+    align-items: stretch;
+
+    padding: 0;
+    gap: 0;
+  }
+
+  .form-color {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+  }
+
+  .color-container {
+    width: 80%;
+  }
+
+  .color-img {
+    flex-grow: 1;
+  }
+
+  .color-text-container {
+    height: 120px;
+  }
+
+  .color-name-text {
+    align-self: center;
+    width: 80%;
   }
 }
