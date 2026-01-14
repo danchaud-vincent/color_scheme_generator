@@ -22,21 +22,20 @@ document.getElementById('submit-btn').addEventListener('click', (e) => {
 });
 
 document.getElementById('darkmode').addEventListener('click', () => {
-  setDarkmode();
-});
-
-function setDarkmode() {
   const darkmodeStatus = document.getElementById('darkmode').checked;
+  localStorage.setItem('darkmode', JSON.stringify(darkmodeStatus));
 
-  if (darkmodeStatus) {
-    document.body.classList.add('darkmode');
-  } else {
-    document.body.classList.remove('darkmode');
-  }
-}
+  setDarkmode(darkmodeStatus);
+});
 
 // ------ FUNCTIONS -------
 function initHTML() {
+  // SET DARKMODE
+  if (localStorage.getItem('darkmode') !== null) {
+    document.getElementById('darkmode').checked = JSON.parse(localStorage.getItem('darkmode'));
+    setDarkmode(JSON.parse(localStorage.getItem('darkmode')));
+  }
+
   let hex = getColorLocalStorage();
   let scheme = getSchemeLocalStorage();
 
@@ -105,7 +104,6 @@ function renderColors(colorsArr) {
 function copyToClipboard(e) {
   if (e.target.dataset) {
     const btn = e.target.parentElement;
-
     const hexValue = e.target.dataset.hex;
     navigator.clipboard.writeText(hexValue);
 
@@ -115,5 +113,13 @@ function copyToClipboard(e) {
     setTimeout(() => {
       btn.classList.remove('copied');
     }, 1500);
+  }
+}
+
+function setDarkmode(darkmodeStatus) {
+  if (darkmodeStatus) {
+    document.body.classList.add('darkmode');
+  } else {
+    document.body.classList.remove('darkmode');
   }
 }
