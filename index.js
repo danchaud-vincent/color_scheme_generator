@@ -88,7 +88,8 @@ function renderColors(colorsArr) {
             <div class="color-text-container">
                 <div class="color-copy-container">
                   <button class="copy-btn" onClick="copyToClipboard(event)" data-hex="${color.hex.value}">
-                    <i class="fa-solid fa-copy" data-hex="${color.hex.value}"></i>
+                    <i class="fa-solid fa-copy icon icon-copy" data-hex="${color.hex.value}"></i>
+                    <i class="fa-solid fa-check icon icon-check"><span class="copy-text">copied</span></i>
                   </button>
                   <p class="color-text">${color.hex.value}</p>
                 </div>
@@ -103,7 +104,16 @@ function renderColors(colorsArr) {
 
 function copyToClipboard(e) {
   if (e.target.dataset) {
+    const btn = e.target.parentElement;
+
     const hexValue = e.target.dataset.hex;
     navigator.clipboard.writeText(hexValue);
+
+    btn.classList.add('copied');
+
+    // (optionnel) retour à l’icône copy après 1.5s
+    setTimeout(() => {
+      btn.classList.remove('copied');
+    }, 1500);
   }
 }
