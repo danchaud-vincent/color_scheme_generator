@@ -1,4 +1,4 @@
-/* RESET */
+/* ======= RESET ======= */
 *,
 *::before,
 *::after {
@@ -11,27 +11,75 @@ html {
   padding: 0;
 }
 
+/* ======= GLOBAL STYLING ======= */
+:root {
+  /* FONT SIZES */
+  --fs-xs: 0.75rem; /*12px*/
+  --fs-s: 1rem; /*16px*/
+  --fs-m: 1.5rem; /*24px*/
+  --fs-l: 2.75rem; /*44px*/
+  --fs-title-small: 2rem; /*32px*/
+  --fs-title: 2.5rem;
+
+  /* COLORS */
+  --bg-body: lightgray;
+  --bg: #ffffff;
+  --bg-toggle: gray;
+  --text-color: #2b283a;
+
+  /* BORDER */
+  --border-color: #d1d5db;
+  --border-rd: 5px;
+}
+
+.darkmode {
+  /* COLORS */
+  --bg-body: #000000;
+  --bg: #1f2937;
+  --bg-button: #3d4b60;
+  --text-color: #ffffff;
+  --border-color: #d1d5db;
+}
+
+/* ======= GLOBAL STYLING ======= */
 body {
   min-height: 100vh;
+  background-color: var(--bg-body);
+  color: var(--text-color);
+  font-family: 'Archivo Black', sans-serif;
 
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-h1,
-p {
-  margin: 0;
-}
-
 .wrapper {
+  background-color: var(--bg);
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-rd);
   margin: 1em 0;
-  border: 2px solid black;
+
   width: 80%;
   height: 100%;
 
   display: flex;
   flex-direction: column;
+}
+
+/* ----- FONT ----- */
+h1,
+p {
+  margin: 0;
+}
+
+.select-scheme,
+.submit-btn,
+p {
+  font-size: var(--fs-xs);
+}
+
+h1 {
+  font-size: var(--fs-title-small);
 }
 
 /* ----- HEADER CONTAINER STYLING ----- */
@@ -46,8 +94,8 @@ header {
 
 .form-color {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  flex-direction: column;
+
   gap: 0.5em;
 }
 
@@ -56,8 +104,32 @@ header {
   height: 40px;
 }
 
-.submit-btn {
+.submit-btn,
+.select-scheme {
   height: 40px;
+}
+
+.input-color,
+.toggle-container {
+  align-self: flex-end;
+}
+
+.input-color,
+.submit-btn,
+.select-scheme {
+  border: 2px solid var(--border-color);
+  border-radius: var(--border-rd);
+  cursor: pointer;
+}
+
+.select-scheme,
+.submit-btn {
+  color: var(--text-color);
+}
+
+.select-scheme,
+.submit-btn {
+  font-family: inherit;
 }
 
 /* ----- TOGGLE BUTTON STYLING ----- */
@@ -73,7 +145,7 @@ header {
 
 .toggle-btn {
   display: inline-block;
-  background-color: gray;
+  background-color: var(--bg-toggle);
   width: 60px;
   height: 30px;
   border-radius: 20px;
@@ -86,7 +158,7 @@ header {
 .toggle-btn::before {
   position: absolute;
   content: '';
-  background-color: #fff;
+  background-color: var(--bg);
   width: 24px;
   height: 24px;
   border-radius: 20px;
@@ -148,16 +220,40 @@ header {
 
 .color-name-text {
   padding: 0.4em 0;
-  border: 2px solid orange;
+  border: 2px solid var(--border-color);
   border-radius: 5px;
 }
 
 /* ----- MEDIA QUERIES ----- */
 
-@media (min-width: 728px) {
+@media (min-width: 600px) {
+  .form-color {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+
+  .toggle-container {
+    align-self: center;
+  }
+
+  .submit-btn,
+  .select-scheme,
+  .input-color {
+    height: 50px;
+  }
+
+  .input-color {
+    width: 60px;
+  }
+}
+
+@media (min-width: 768px) {
   .wrapper {
     height: 600px;
-    width: 60%;
+    width: 70%;
   }
 
   main {
@@ -171,12 +267,6 @@ header {
 
     padding: 0;
     gap: 0;
-  }
-
-  .form-color {
-    display: flex;
-    justify-content: center;
-    gap: 1em;
   }
 
   .color-container {
@@ -194,5 +284,17 @@ header {
   .color-name-text {
     align-self: center;
     width: 80%;
+  }
+
+  /* ----- FONT ----- */
+
+  .select-scheme,
+  .submit-btn,
+  p {
+    font-size: var(--fs-s);
+  }
+
+  h1 {
+    font-size: var(--fs-title);
   }
 }
