@@ -7,7 +7,13 @@ Build a color scheme generator app using the following requirements :
 - [Color API - documentation](https://www.thecolorapi.com/docs#schemes)
 - [Figma design](https://www.figma.com/design/5Si9YM6QizrS5w2emKomrB/Color-Scheme-Generator--Copy-?node-id=0-1&p=f&t=cWbO5CnUApQQM8jv-0)
 
-The app had to be responsive and allow the user to choose between a dark or light mode.
+What you can do:
+
+- Select a color with the color input.
+- Select a color scheme.
+- Click the **Get color** button to retrieve colors from the Color API
+- Click on hex values to copy them to the clipboard.
+- Enable or disable dark mode using the toggle button.
 
 ## Screenshots
 
