@@ -15,6 +15,9 @@ What you can do:
 - Click on hex values to copy them to the clipboard.
 - Enable or disable dark mode using the toggle button.
 
+Visit the live site :
+- [Color scheme generator](https://danchaud-vincent.github.io/color_scheme_generator/)
+
 ## Screenshots
 
 ### Desktop - Light Mode
